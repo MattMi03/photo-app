@@ -23,7 +23,7 @@ jobs:
           # 锁定 pip/virtualenv 至稳定版本：pip 25.x 在 partial upgrade 后会触发
           # open_rich_spinner ImportError，venv 内 pip 文件版本不一致
           pip3 install --no-cache-dir --upgrade "pip==24.2"
-          pip3 install --no-cache-dir buildozer==1.5.0 cython==0.29.34 "virtualenv==20.26.6"
+          pip3 install --no-cache-dir --upgrade buildozer cython==0.29.34
 
       - name: Build APK with Buildozer
         run: |

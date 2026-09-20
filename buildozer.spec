@@ -12,7 +12,8 @@ source.exclude_patterns = bin/*, .buildozer/*, __pycache__/*, *.pyc, .git/*, ven
 version = 1.0.0
 
 requirements = python3==3.11.5, hostpython3==3.11.5, kivy, pillow, plyer, requests
-
+# 强制使用最新 p4a master 分支以修复 pip 24.0+ 报错
+p4a.branch = master
 # 竖屏
 orientation = portrait
 fullscreen = 0
