@@ -14,7 +14,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install system dependencies
         run: |
@@ -22,6 +22,21 @@ jobs:
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev libltdl-dev
           pip3 install --upgrade pip
           pip3 install buildozer
+
+      - name: Pre-inject get-pip.py for p4a host venv
+        run: |
+          # 下载官方 get-pip.py 到 p4a 期望的目录
+          curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          # 找到 p4a 的 venv 目录（可能已存在）
+          VENV_DIR=$(find .buildozer -type d -name "venv" -path "*/build/*" 2>/dev/null | head -1)
+          if [ -n "$VENV_DIR" ]; then
+            cp get-pip.py "$VENV_DIR/"
+            echo "已注入 get-pip.py 到: $VENV_DIR"
+          else
+            echo "venv 目录尚不存在，将在构建时自动注入"
+            # 备用方案：放到项目根目录，p4a 会优先查找
+            cp get-pip.py ./
+          fi
 
       - name: Build APK with Buildozer
         run: |
