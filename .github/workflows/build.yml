@@ -20,8 +20,10 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev libltdl-dev
-          pip3 install --upgrade pip
-          pip3 install buildozer==1.5.0 cython==0.29.34
+          # 锁定 pip/virtualenv 至稳定版本：pip 25.x 在 partial upgrade 后会触发
+          # open_rich_spinner ImportError，venv 内 pip 文件版本不一致
+          pip3 install --no-cache-dir --upgrade "pip==24.2"
+          pip3 install --no-cache-dir buildozer==1.5.0 cython==0.29.34 "virtualenv==20.26.6"
 
       - name: Build APK with Buildozer
         run: |
