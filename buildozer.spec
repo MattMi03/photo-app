@@ -11,7 +11,7 @@ source.exclude_patterns = bin/*, .buildozer/*, __pycache__/*, *.pyc, .git/*, ven
 
 version = 1.0.0
 
-requirements = python3==3.13.9, hostpython3==3.13.9, kivy, pillow, plyer, requests
+requirements = python3==3.13.9, hostpython3==3.13.9, kivy==2.3.1, pillow, plyer, requests, openssl, sqlite3, pyjnius, android, setuptools, certifi, charset-normalizer, idna, urllib3
 
 # 竖屏
 orientation = portrait
