@@ -7,20 +7,11 @@ package.domain = edu.qhjy
 
 source.dir = .
 source.include_exts = py,png,jpg,jpeg,ttc,ttf,otf,json
-source.exclude_patterns = bin/*, .buildozer/*, __pycache__/*, *.pyc, .git/*
+source.exclude_patterns = bin/*, .buildozer/*, __pycache__/*, *.pyc, .git/*, venv/*, .venv/*
 
 version = 1.0.0
 
-requirements =
-    python3,
-    kivy,
-    pillow,
-    plyer,
-    requests,
-    urllib3,
-    idna,
-    certifi,
-    charset-normalizer
+requirements = python3==3.12.11, hostpython3==3.12.14, kivy, pillow, plyer, requests
 
 # 竖屏
 orientation = portrait
